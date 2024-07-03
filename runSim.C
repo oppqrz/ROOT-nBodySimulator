@@ -99,32 +99,22 @@ void runSim()
     TH2D* hVenus = new TH2D("hVenus", "hVenus", 1000,-250,250,1000,-250,250);
     TH2D* hEarth = new TH2D("hEarth", "hEarth", 1000,-250,250,1000,-250,250);
     TH2D* hMars = new TH2D("hMars", "hMars", 1000,-250,250,1000,-250,250);
-
+/*
     std::vector<TH2D*> hBodies;
     hBodies.push_back(hSun);
     hBodies.push_back(hMercury);
     hBodies.push_back(hVenus);
     hBodies.push_back(hEarth);
     hBodies.push_back(hMars);
-
-/*
-    TH1D* XvelocityDistribution = new TH1D("XvelocityDistribution", "XvelocityDistribution", 100000,-20,20);
-    TH1D* YvelocityDistribution = new TH1D("YvelocityDistribution", "YvelocityDistribution", 100000,-20,20);
-
-    TH1D* XAcelDistribution = new TH1D("XAcelDistribution", "XAcelDistribution", 100000,-0.01,0.01);
-    TH1D* YAcelDistribution = new TH1D("YAcelDistribution", "YAcelDistribution", 100000,-0.01,0.01);
-
-    TH1D* xPos = new TH1D("xPos", "xPos", 100000,-20,20);
-    TH1D* yPos = new TH1D("yPos", "yPos", 100000,-20,20);
 */
 
     //Loop through all Bodies and prepare the simulation
 
     for(int nT = 0; nT < NumberOfTimeSteps ; nT++)
     {
-        for(int i =0; i < AllBodies.size(); i++)
+        for(unsigned long i =0; i < AllBodies.size(); i++)
             {
-                for(int j = 0; j < AllBodies.size(); j++)
+                for(unsigned long j = 0; j < AllBodies.size(); j++)
                 {
                     if( i == j)
                     {
@@ -138,7 +128,7 @@ void runSim()
                 }
                 AllBodies[i].UpdatePosition();
 
-                hBodies[i]->Fill(AllBodies[i].PosX/1E9,AllBodies[i].PosY/1E9);
+                //hBodies[i]->Fill(AllBodies[i].PosX/1E9,AllBodies[i].PosY/1E9);
                 
                 //XvelocityDistribution->Fill(AllBodies[1].VelX/1E4);
                 //YvelocityDistribution->Fill(AllBodies[1].VelY/1E4);
@@ -156,31 +146,15 @@ void runSim()
             }
     }
        
-    
 
-
-
-
-    //std::cout << "Hey Im code thats running " << std::endl;
-    //PlanetDistribution->Draw();
-
+/*
     for(int i = 0; i < hBodies.size() ; i++)
     {
         hBodies[i]->SetLineColor(kBlue + i);
         hBodies[i]->Draw("SAME");
     }
-
-    //XvelocityDistribution->Draw();
-    //YvelocityDistribution->SetLineColor(kRed);
-    //YvelocityDistribution->Draw("SAME");
-
-    //xPos->Draw();
-    //yPos->SetLineColor(kRed);
-    //yPos->Draw("SAME");
-
-    //XAcelDistribution->Draw();
-    //YAcelDistribution->SetLineColor(kRed);
-    //YAcelDistribution->Draw("SAME");
+*/
+   
 
 
     return;
