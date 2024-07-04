@@ -1,5 +1,5 @@
 #include <iostream>
-#include "TH2F.h"
+//#include "TH2F.h"
 
 
 class Body
@@ -93,13 +93,14 @@ void runSim()
     AllBodies.push_back(Earth);
     AllBodies.push_back(Mars);
 
-    // Prepare to plot it a s a Histogram for some reason you Dingus
+    // Prepare to plot it a s a Histogram
+    /*
     TH2D* hSun = new TH2D("hSun", "hSun", 1000,-250,250,1000,-250,250);
     TH2D* hMercury = new TH2D("hMercury", "hMercury", 1000,-250,250,1000,-250,250);
     TH2D* hVenus = new TH2D("hVenus", "hVenus", 1000,-250,250,1000,-250,250);
     TH2D* hEarth = new TH2D("hEarth", "hEarth", 1000,-250,250,1000,-250,250);
     TH2D* hMars = new TH2D("hMars", "hMars", 1000,-250,250,1000,-250,250);
-/*
+
     std::vector<TH2D*> hBodies;
     hBodies.push_back(hSun);
     hBodies.push_back(hMercury);
@@ -109,7 +110,6 @@ void runSim()
 */
 
     //Loop through all Bodies and prepare the simulation
-
     for(int nT = 0; nT < NumberOfTimeSteps ; nT++)
     {
         for(unsigned long i =0; i < AllBodies.size(); i++)
@@ -127,22 +127,11 @@ void runSim()
                     
                 }
                 AllBodies[i].UpdatePosition();
-
-                //hBodies[i]->Fill(AllBodies[i].PosX/1E9,AllBodies[i].PosY/1E9);
-                
-                //XvelocityDistribution->Fill(AllBodies[1].VelX/1E4);
-                //YvelocityDistribution->Fill(AllBodies[1].VelY/1E4);
-                //xPos->Fill(AllBodies[1].PosX/1E10);
-                //yPos->Fill(AllBodies[1].PosY/1E10);
-                //XAcelDistribution->Fill(AllBodies[1].CalculateVdotX(AllBodies[0]));
-                //YAcelDistribution->Fill(AllBodies[1].CalculateVdotY(AllBodies[0]));
             }
 
         if(nT % (60*60*24) == 0)
             {
-                //std::cout << "Time Passed :  " << TimeStep*nT << " seconds " << std::endl;
                 std::cout << "Time Passed :  " << TimeStep*nT / CheckInTime << " Days " << std::endl;
-                //std::cout << "Acel X: " <<  AllBodies[1].CalculateVdotX(AllBodies[0]) << std::endl;
             }
     }
        
